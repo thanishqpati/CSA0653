@@ -1,0 +1,48 @@
+P.THANISHQ
+192425242
+
+def prim_mst(graph):
+    n = len(graph)
+    selected = [False] * n
+    selected[0] = True
+    total_cost = 0
+
+    print("Selected Routes:")
+
+    for _ in range(n - 1):
+        minimum = float('inf')
+        x = y = 0
+
+        for i in range(n):
+            if selected[i]:
+                for j in range(n):
+                    if not selected[j] and graph[i][j] > 0:
+                        if graph[i][j] < minimum:
+                            minimum = graph[i][j]
+                            x, y = i, j
+
+        print(f"{x} - {y} : {graph[x][y]}")
+        total_cost += graph[x][y]
+        selected[y] = True
+
+    return total_cost
+
+
+graph = [
+    [0, 2, 3, 1],
+    [2, 0, 0, 4],
+    [3, 0, 0, 5],
+    [1, 4, 5, 0]
+]
+
+cost = prim_mst(graph)
+
+print("Minimum Transportation Cost =", cost)
+
+OutPut:
+Selected Routes:
+0 - 3 : 1
+0 - 1 : 2
+0 - 2 : 3
+
+Minimum Transportation Cost = 6
