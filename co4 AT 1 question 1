@@ -31,3 +31,6 @@ graph = [
 ]
 
 print("Total Weight =", prim_mst(graph))
+
+Output:
+Total Weight=3
