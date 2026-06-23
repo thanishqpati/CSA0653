@@ -41,3 +41,6 @@ for u, v, w in mst:
     print(f"{u} - {v} : {w}")
 
 print("Total Weight =", weight)
+
+Output:
+MST Cost=7
