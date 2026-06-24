@@ -1,0 +1,35 @@
+P.THANISHQ
+192425242
+
+assigned = [False] * 4
+result = [-1] * 4
+def assign_job(job, skills):
+    if job == 4:
+        return True
+    for emp in range(4):
+        if skills[job][emp] == 1 and not assigned[emp]:
+            assigned[emp] = True
+            result[job] = emp
+            if assign_job(job + 1, skills):
+                return True
+            assigned[emp] = False  # Backtracking
+    return False
+skills = [
+    [1, 1, 0, 0],  # Job 1
+    [0, 1, 1, 0],  # Job 2
+    [1, 0, 0, 1],  # Job 3
+    [0, 0, 1, 1]   # Job 4
+]
+if assign_job(0, skills):
+    print("Job Assignments:")
+    for i in range(4):
+        print("Job", i + 1, "-> Employee", result[i] + 1)
+else:
+    print("No feasible assignment found.")
+
+Output
+Job Assignments:
+Job 1 -> Employee 1
+Job 2 -> Employee 2
+Job 3 -> Employee 4
+Job 4 -> Employee 3
