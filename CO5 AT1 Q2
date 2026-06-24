@@ -1,0 +1,40 @@
+P.THANISHQ
+192425242
+
+def is_safe(exam, slot, graph, colors):
+    for i in range(len(graph)):
+        if graph[exam][i] == 1 and colors[i] == slot:
+            return False
+    return True
+def timetable(exam, graph, m, colors):
+    if exam == len(graph):
+        return True
+    for slot in range(1, m + 1):
+        if is_safe(exam, slot, graph, colors):
+            colors[exam] = slot
+            if timetable(exam + 1, graph, m, colors):
+                return True
+            colors[exam] = 0  
+    return False
+graph = [
+    [0,1,1,0],
+    [1,0,1,1],
+    [1,1,0,1],
+    [0,1,1,0]
+]
+m = 3  
+colors = [0] * len(graph)
+
+if timetable(0, graph, m, colors):
+    print("Exam Timetable:")
+    for i in range(len(colors)):
+        print("Exam", i + 1, "-> Time Slot", colors[i])
+else:
+    print("No feasible timetable found.")
+
+Sample Output
+Exam Timetable:
+Exam 1 -> Time Slot 1
+Exam 2 -> Time Slot 2
+Exam 3 -> Time Slot 3
+Exam 4 -> Time Slot 1
